@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/vinic/Desktop/FatecECursos/UsuarioDeTeste/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/vinic/Desktop/FatecECursos/UsuarioDeTeste/app/src/main/res/layout/activity_test.xml" value="0.33" />
+        <entry key="..\:/Users/vinic/Desktop/FatecECursos/UsuarioDeTeste/app/src/main/res/layout/activity_test.xml" value="0.1" />
       </map>
     </option>
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/me/dio/usuariodeteste/Player.kt" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

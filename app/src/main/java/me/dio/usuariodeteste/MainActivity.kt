@@ -3,28 +3,26 @@ package me.dio.usuariodeteste
 import android.os.Bundle
 import android.util.Log.d
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import me.dio.usuariodeteste.domain.Test
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val BASE_URL = "http://sportsmatch.com.br/teste/teste.json/"
+const val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
 class MainActivity : AppCompatActivity() {
-    lateinit var testAdapter: TestAdapter
-    lateinit var linearLayoutManager: LinearLayoutManager
+    //lateinit var testAdapter: TestAdapter
+    //lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        rv_test.setHasFixedSize(true)
-        linearLayoutManager = LinearLayoutManager(this)
-        rv_test.layoutManager = linearLayoutManager
+//        rv_test.setHasFixedSize(true)
+//        linearLayoutManager = LinearLayoutManager(this)
+//        rv_test.layoutManager = linearLayoutManager
 
         getMyData()
     }
@@ -38,18 +36,25 @@ class MainActivity : AppCompatActivity() {
 
         val retrofitData = retrofitBuilder.getTest()
 
-        retrofitData.enqueue(object : Callback<List<Test>?> {
-            override fun onResponse(call: Call<List<Test>?>, response: Response<List<Test>?>) {
+        retrofitData.enqueue(object : Callback<List<MyDataItem>?> {
+            override fun onResponse(call: Call<List<MyDataItem>?>, response: Response<List<MyDataItem>?>) {
                 val responseBody = response.body()!!
+                val myStringBuilder = StringBuilder()
 
-                    testAdapter = TestAdapter(baseContext, responseBody)
-                    testAdapter.notifyDataSetChanged()
-                    rv_test.adapter = testAdapter
+                for(myData in responseBody){
+                    myStringBuilder.append(myData.body)
+                    myStringBuilder.append(myData.userId)
+                }
+
+                tv_name.text = myStringBuilder
+                tv_selecao.text = myStringBuilder
             }
 
-            override fun onFailure(call: Call<List<Test>?>, t: Throwable) {
+            override fun onFailure(call: Call<List<MyDataItem>?>, t: Throwable) {
                 d("Main Activity", "onFailure" + t.message)
             }
+
+
         })
         }
     }
